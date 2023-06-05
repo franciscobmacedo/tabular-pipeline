@@ -19,7 +19,7 @@ def load_schema(session_id: uuid.UUID, file_path: str) -> Schema:
 
 def load_xlsx(file: str | bytes) -> Dataset:
     if isinstance(file, bytes):
-        return Databook().load(file, "xlsx")
+        databook = Databook().load(file, "xlsx")
     else:
         with open(file, "rb") as fh:
             databook = Databook().load(fh, "xlsx")
@@ -31,7 +31,6 @@ def load_xlsx(file: str | bytes) -> Dataset:
 def load_csv(file: str | bytes, delimiter: Optional[str] = ",") -> Dataset:
     if isinstance(file, bytes):
         file = StringIO(file.decode())
-
         return Dataset().load(file, "csv", delimiter=delimiter)
     with open(file, "r") as fh:
         # FIXME - delimiter detection is not working
