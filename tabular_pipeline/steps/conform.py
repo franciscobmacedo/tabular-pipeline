@@ -2,10 +2,10 @@ from typing import Optional
 
 from tablib import Dataset
 
-from pipeline import settings
-from pipeline.schemas import Schema, StepChoices
-from pipeline.steps import Step
-from pipeline.util import normalise_entry
+from .. import settings
+from ..schemas import Schema, StepChoices
+from ..steps import Step
+from ..util import normalise_entry
 
 
 class Conform(Step):

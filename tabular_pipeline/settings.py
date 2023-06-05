@@ -1,7 +1,7 @@
 import logging
 import os
 
-from pipeline.util import create_dir
+from .util import create_dir
 
 formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
 

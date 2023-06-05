@@ -1,6 +1,6 @@
 import typer
 
-from pipeline import standardise
+from tabular_pipeline import standardise
 
 
 def main(file: str, schema: str):

@@ -1,9 +1,9 @@
 import os
 import uuid
 
-from pipeline.schemas import StepChoices
-from pipeline.settings import BASE_OUTPUT_DIR
-from pipeline.util import create_dir
+from .schemas import StepChoices
+from .settings import BASE_OUTPUT_DIR
+from .util import create_dir
 
 
 def create_output_dir(session_id: uuid.UUID, path: str):

@@ -5,10 +5,10 @@ from typing import Optional
 import yaml
 from tablib import Databook, Dataset
 
-from pipeline import settings
-from pipeline.schemas import Schema
-from pipeline.util import detect_csv_delimiter
-from pipeline.schemas import StepChoices
+from . import settings
+from .schemas import Schema
+from .schemas import StepChoices
+
 
 def load_schema(session_id: uuid.UUID, file_path: str) -> Schema:
     settings.read_logger.info(f"{session_id}: loading schema")
@@ -27,10 +27,9 @@ def load_xlsx(file_path: str) -> Dataset:
 
 def load_csv(file_path: str, delimiter: Optional[str] = ",") -> Dataset:
     with open(file_path, "r") as fh:
-        
         # FIXME - delimiter detection is not working
         # if not delimiter:
-            # delimiter = detect_csv_delimiter(fh)
+        # delimiter = detect_csv_delimiter(fh)
         return Dataset().load(fh, format="csv", delimiter=delimiter)
 
 

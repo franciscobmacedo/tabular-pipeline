@@ -2,9 +2,9 @@ import uuid
 
 from tablib import Dataset
 
-from pipeline.read import load_step_data
-from pipeline.write import dump_step_data
-from pipeline.schemas import StepChoices
+from ..read import load_step_data
+from ..write import dump_step_data
+from ..schemas import StepChoices
 
 
 step_order = [StepChoices.LOAD, StepChoices.CONFORM, StepChoices.NORMALISE]

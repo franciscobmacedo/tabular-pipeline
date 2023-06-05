@@ -1,10 +1,10 @@
 from tablib import Dataset
 
-from pipeline import settings
-from pipeline.read import load_csv, load_xlsx
-from pipeline.steps import Step, StepException
-from pipeline.schemas import StepChoices
-from pipeline.util import is_xlsx
+from .. import settings
+from ..read import load_csv, load_xlsx
+from ..steps import Step, StepException
+from ..schemas import StepChoices
+from ..util import is_xlsx
 
 
 class Load(Step):
