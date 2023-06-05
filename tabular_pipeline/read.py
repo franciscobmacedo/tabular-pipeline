@@ -4,6 +4,7 @@ from typing import Optional
 
 import yaml
 from tablib import Databook, Dataset
+from io import StringIO
 
 from . import settings
 from .schemas import Schema
@@ -16,17 +17,23 @@ def load_schema(session_id: uuid.UUID, file_path: str) -> Schema:
         return Schema(**yaml.load(fh, Loader=yaml.FullLoader))
 
 
-def load_xlsx(file_path: str) -> Dataset:
-    with open(file_path, "rb") as fh:
-        databook = Databook().load(fh, "xlsx")
-    dataset: Dataset = databook.sheets()[
-        0
-    ]  # TODO - for now, one dataset is handled - it should handle many
-    return dataset
+def load_xlsx(file: str | bytes) -> Dataset:
+    if isinstance(file, bytes):
+        return Databook().load(file, "xlsx")
+    else:
+        with open(file, "rb") as fh:
+            databook = Databook().load(fh, "xlsx")
+
+    # TODO - for now, one dataset is handled - it should handle many
+    return databook.sheets()[0]
 
 
-def load_csv(file_path: str, delimiter: Optional[str] = ",") -> Dataset:
-    with open(file_path, "r") as fh:
+def load_csv(file: str | bytes, delimiter: Optional[str] = ",") -> Dataset:
+    if isinstance(file, bytes):
+        file = StringIO(file.decode())
+
+        return Dataset().load(file, "csv", delimiter=delimiter)
+    with open(file, "r") as fh:
         # FIXME - delimiter detection is not working
         # if not delimiter:
         # delimiter = detect_csv_delimiter(fh)
