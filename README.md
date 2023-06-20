@@ -7,7 +7,8 @@ The idea is to try and determine why Pydantic based schemas can be a good idea:
 
 - Custom fields - for example, `postcode` can be a custom field that derives from str. If we have a repo for our common datasets, we can have common fields as well - [See the postcode example here](./schemas/fields.py).
 - allows to export the schema to json (and, with minor adaptation, to yaml) - we can maybe adapt the ERD generator for this? [See the example here](./schemas/export.py). It follows the standards.
-- One can choose between strict field conversion or not (in V2).
+- One can choose between strict field conversion or not (only in V2).
+- One can have multiple aliases for a field (only in V2).
 - most common field constrains/validation rules are already builtin in pydantic:
   -  enums (for choice fields)
   -  numeric constrains (`gt`, `lt`, etc..)
