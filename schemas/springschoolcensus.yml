@@ -1,0 +1,233 @@
+$defs:
+  Address:
+    description: "\n    Some detailed description of this model can be here\n    "
+    properties:
+      NativeId:
+        title: Nativeid
+        type: string
+      addressesorderseqcolumn:
+        title: Addressesorderseqcolumn
+        type: string
+      addressestableid:
+        title: Addressestableid
+        type: string
+      addressline1:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Addressline1
+      addressline2:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Addressline2
+      addressline3:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Addressline3
+      addressline4:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Addressline4
+      addressline5:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Addressline5
+      administrativearea:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Administrativearea
+      locality:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Locality
+      paon:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Paon
+      postcode:
+        anyOf:
+        - examples:
+          - SP11 9DG
+          - W1J 7BU
+          pattern: ^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$
+          type: string
+        - type: 'null'
+        title: Postcode
+      posttown:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Posttown
+      pupilonrolltableid:
+        title: Pupilonrolltableid
+        type: string
+      saon:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Saon
+      sourceid:
+        title: Sourceid
+        type: string
+      street:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Street
+      town:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Town
+      uniquepropertyreferencenumber:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        title: Uniquepropertyreferencenumber
+    required:
+    - NativeId
+    - sourceid
+    - addressestableid
+    - addressesorderseqcolumn
+    - pupilonrolltableid
+    - uniquepropertyreferencenumber
+    - postcode
+    - saon
+    - paon
+    - street
+    - locality
+    - town
+    - administrativearea
+    - posttown
+    - addressline1
+    - addressline2
+    - addressline3
+    - addressline4
+    - addressline5
+    title: address
+    type: object
+  ApReason:
+    enum:
+    - ASP
+    - EHC
+    - MHN
+    - NEW
+    - OTH
+    - PEX
+    - PHN
+    - RHE
+    title: ApReason
+  ApprovisionDetailOffRoll:
+    description: "\n    Some detailed description of this model can be here\n    "
+    properties:
+      NativeId:
+        title: Nativeid
+        type: string
+      approvisiondetailoffrollorderseqcolumn:
+        title: Approvisiondetailoffrollorderseqcolumn
+        type: string
+      approvisiondetailoffrolltableid:
+        title: Approvisiondetailoffrolltableid
+        type: string
+      apreason:
+        anyOf:
+        - $ref: '#/$defs/ApReason'
+        - type: 'null'
+      prevurn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Prevurn
+      pupilnolongeronrolltableid:
+        title: Pupilnolongeronrolltableid
+        type: string
+      senprovisionentry:
+        anyOf:
+        - $ref: '#/$defs/SenReason'
+        - type: 'null'
+      sourceid:
+        title: Sourceid
+        type: string
+    required:
+    - NativeId
+    - sourceid
+    - prevurn
+    - apreason
+    - senprovisionentry
+    - approvisiondetailoffrolltableid
+    - approvisiondetailoffrollorderseqcolumn
+    - pupilnolongeronrolltableid
+    title: approvisiondetailoffrole
+    type: object
+  ApprovisionDetailOnRoll:
+    description: "\n    Some detailed description of this model can be here\n    "
+    properties:
+      NativeId:
+        title: Nativeid
+        type: string
+      approvisiondetailonrollorderseqcolumn:
+        title: Approvisiondetailonrollorderseqcolumn
+        type: string
+      approvisiondetailonrolltableid:
+        title: Approvisiondetailonrolltableid
+        type: string
+      apreason:
+        anyOf:
+        - $ref: '#/$defs/ApReason'
+        - type: 'null'
+      prevurn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        title: Prevurn
+      pupilonrolltableid:
+        title: Pupilonrolltableid
+        type: string
+      senprovisionentry:
+        anyOf:
+        - $ref: '#/$defs/SenReason'
+        - type: 'null'
+      sourceid:
+        title: Sourceid
+        type: string
+    required:
+    - NativeId
+    - sourceid
+    - prevurn
+    - apreason
+    - senprovisionentry
+    - approvisiondetailonrolltableid
+    - approvisiondetailonrollorderseqcolumn
+    - pupilonrolltableid
+    title: approvisiondetailonrole
+    type: object
+  SenReason:
+    enum:
+    - N
+    - E
+    - K
+    - S
+    - A
+    - P
+    title: SenReason
+description: "\n    Some detailed description of this dataset can be here\n    "
+properties:
+  addresses.csv:
+    $ref: '#/$defs/Address'
+  approvisiondetailoffroll.csv:
+    $ref: '#/$defs/ApprovisionDetailOffRoll'
+  approvisiondetailonroll.csv:
+    $ref: '#/$defs/ApprovisionDetailOnRoll'
+required:
+- addresses.csv
+- approvisiondetailoffroll.csv
+- approvisiondetailonroll.csv
+title: springschoolcensus
+type: object
