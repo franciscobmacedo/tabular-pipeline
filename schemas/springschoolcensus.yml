@@ -70,7 +70,10 @@ $defs:
         type: string
       saon:
         anyOf:
-        - type: string
+        - maxLength: 10
+          minLength: 3
+          pattern: ^\d*$
+          type: string
         - type: 'null'
         title: Saon
       sourceid:
@@ -88,7 +91,9 @@ $defs:
         title: Town
       uniquepropertyreferencenumber:
         anyOf:
-        - type: integer
+        - exclusiveMaximum: 1000
+          exclusiveMinimum: 10
+          type: integer
         - type: 'null'
         title: Uniquepropertyreferencenumber
     required:

@@ -6,7 +6,7 @@ import yaml
 from pydantic import AliasChoices, BaseModel
 from thefuzz import fuzz
 
-from schemas.base import Address, SpringSchoolCensusDataset
+from schemas.base import Address, ApprovisionDetailOffRoll, SpringSchoolCensusDataset
 from schemas.export import dump_schema
 
 MIN_SCORE = 80
@@ -45,29 +45,30 @@ def detect_fields(keys: Iterable, schema: Type[BaseModel]):
     return matched_fields
 
 
-def conform(record: list[dict], model: Type[BaseModel]) -> list[dict]:
+def conform(record: list[dict], schema: Type[BaseModel]) -> list[dict]:
     """
     return the data in the same format as the input.
     As an example, it's a list of dicts but it can be a stream of events as well.
     """
-    matched_fields = detect_fields(record[0].keys(), model)
+    matched_fields = detect_fields(record[0].keys(), schema)
     return [{field: entry[key] for field, key, _ in matched_fields} for entry in record]
 
 
-def run_pipeline():
+def run_pipeline(path: str, schema: Type[BaseModel]):
     # dummy read step
-    with open("samples/addresses.csv", "r") as f:
+    with open(path, "r") as f:
         data = [row for row in csv.DictReader(f, skipinitialspace=True)]
 
     # conform data to match model
-    conformed_data = conform(data, Address)
+    conformed_data = conform(data, schema)
     print(conformed_data)
 
 
 if __name__ == "__main__":
+    # dump schemas to json and uaml
     dump_schema("json", Address)
-    dump_schema("yaml", Address)
     dump_schema("yaml", SpringSchoolCensusDataset)
 
-    # conform values
-    run_pipeline()
+    # conform addresses values
+    run_pipeline("samples/addresses.csv", Address)
+    run_pipeline("samples/approvisiondetailoffroll.csv", ApprovisionDetailOffRoll)
