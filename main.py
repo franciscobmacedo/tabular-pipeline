@@ -7,6 +7,7 @@ from pydantic import AliasChoices, BaseModel
 from thefuzz import fuzz
 
 from schemas.base import Address, SpringSchoolCensusDataset
+from schemas.export import dump_schema
 
 MIN_SCORE = 80
 
@@ -64,7 +65,6 @@ def run_pipeline():
 
 
 if __name__ == "__main__":
-    
     dump_schema("json", Address)
     dump_schema("yaml", Address)
     dump_schema("yaml", SpringSchoolCensusDataset)
