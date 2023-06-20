@@ -7,6 +7,6 @@ def main(file: str, schema: str):
 
 if __name__ == "__main__":
     main(
-        "samples/files/sample1.xslx",
+        "samples/files/sample1.xlsx",
         "samples/schemas/sample1.yml",
     )
